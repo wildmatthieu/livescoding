@@ -84,3 +84,20 @@ function advancedQuestionWithObject(){
     });
 
 }
+
+
+
+function getIdGenerator() {
+    let id = 0; // <-- private variable belonging to a closure
+    return function() {
+        id = id + 1; // we can access "id" from here, since it's defined in the upper scope relative to this (annonymous) function
+        return id; 
+    }
+}
+  
+// we have no way to modify the "id" variable directly in this scope
+// the only way to access it is through the function returned by "getIdGenerator"
+const generateUniqueId = getIdGenerator()
+console.log(generateUniqueId()) 
+console.log(generateUniqueId())
+console.log(generateUniqueId())
